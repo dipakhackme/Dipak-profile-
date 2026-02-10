@@ -15,7 +15,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ✅ Allowed Origins (Dev + Prod)
 const allowedOrigins = [
-    "http://localhost:5173",
+    "https://dipak-profile-1r52.vercel.app",
 
 ];
 

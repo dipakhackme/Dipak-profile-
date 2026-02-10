@@ -59,7 +59,7 @@ exports.createBlog = async (req, res) => {
   try {
     const blogData = req.body;
     if (req.file) {
-      blogData.image = `/uploads/${req.file.filename}`;
+      blogData.image = req.file.path;
     }
     const blog = await Blog.create(blogData);
     
@@ -82,7 +82,7 @@ exports.updateBlog = async (req, res) => {
   try {
     const blogData = req.body;
     if (req.file) {
-      blogData.image = `/uploads/${req.file.filename}`;
+      blogData.image = req.file.path;
     }
     const blog = await Blog.findByIdAndUpdate(
       req.params.id,

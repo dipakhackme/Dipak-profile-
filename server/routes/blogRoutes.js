@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../utils/upload");
+const upload = require("../config/cloudinary");
 const {
   getAllBlogs,
   getBlogById,
@@ -23,7 +23,7 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
     }
     res.status(200).json({
       success: true,
-      imageUrl: `/uploads/${req.file.filename}`,
+      imageUrl: req.file.path,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Image upload failed" });

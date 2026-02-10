@@ -11,7 +11,13 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+// Serve uploads folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// For Vercel deployment - serve from public folder
+if (process.env.VERCEL) {
+    app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+}
 
 // ✅ Allowed Origins (Dev + Prod)
 const allowedOrigins = [

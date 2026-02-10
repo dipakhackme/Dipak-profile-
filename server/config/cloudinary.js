@@ -10,12 +10,18 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: "portfolio",
-    allowed_formats: ["jpg", "jpeg", "png", "gif"],
+  params: async (req, file) => {
+    return {
+      folder: "portfolio",
+      allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
+      public_id: `${Date.now()}-${file.originalname.split('.')[0]}`,
+    };
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ 
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 },
+});
 
 module.exports = upload;

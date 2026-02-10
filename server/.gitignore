@@ -1,4 +1,5 @@
-# Node.js
 node_modules/
-
-
+.env
+*.log
+uploads/
+.DS_Store

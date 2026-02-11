@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import BlogForm from "./pages/BlogForm";
 import MainLayout from "./Layout/MainLayout";
-import NotFound from "../NotFound";
+import NotFound from "./pages/NotFound";
 
 // Component that conditionally redirects based on screen size
 function RootRedirect() {

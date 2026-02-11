@@ -51,7 +51,7 @@ export default function BlogForm() {
       
       const data = await response.json();
       if (data.success) {
-        editor?.chain().focus().setImage({ src: `${API_URL}${data.imageUrl}` }).run();
+        editor?.chain().focus().setImage({ src: data.imageUrl }).run();
         toast.success('Image uploaded successfully');
       } else {
         toast.error('Image upload failed');

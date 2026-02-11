@@ -147,7 +147,7 @@ export default function BlogForm() {
           tags: data.data.tags?.join(", ") || "",
           image: null,
         });
-        setImagePreview(`${API_URL}${data.data.image}`);
+        setImagePreview(data.data.image);
       }
     } catch (error) {
       toast.error("Error fetching blog");
@@ -168,6 +168,37 @@ export default function BlogForm() {
 
   const handleSubmit = async (e, publishStatus) => {
     e.preventDefault();
+
+    // Validation
+    if (!formData.title.trim()) {
+      toast.error("Title is required");
+      return;
+    }
+    if (!formData.excerpt.trim() || formData.excerpt === '<p></p>') {
+      toast.error("Short description is required");
+      return;
+    }
+    if (!formData.content.trim() || formData.content === '<p></p>') {
+      toast.error("Content is required");
+      return;
+    }
+    if (!formData.image && !imagePreview) {
+      toast.error("Featured image is required");
+      return;
+    }
+    if (!formData.category) {
+      toast.error("Category is required");
+      return;
+    }
+    if (!formData.tags.trim()) {
+      toast.error("Tags are required");
+      return;
+    }
+    if (!formData.author.trim()) {
+      toast.error("Author is required");
+      return;
+    }
+
     setLoading(true);
 
     const formDataToSend = new FormData();
@@ -239,7 +270,7 @@ export default function BlogForm() {
               {/* Title */}
               <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
                 <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                  <FiFileText /> Blog Title
+                  <FiFileText /> Blog Title <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -255,7 +286,7 @@ export default function BlogForm() {
               {/* Excerpt */}
               <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
                 <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                  <FiEye /> Short Description (Max 400 words)
+                  <FiEye /> Short Description (Max 400 words) <span className="text-red-500">*</span>
                 </label>
                 <div className="rich-text-editor-dark">
                   <RichTextEditor editor={excerptEditor}>
@@ -287,7 +318,7 @@ export default function BlogForm() {
               {/* Content */}
               <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
                 <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                  <FiEdit3 /> Full Content
+                  <FiEdit3 /> Full Content <span className="text-red-500">*</span>
                 </label>
                 <div className="rich-text-editor-dark">
                   <RichTextEditor editor={editor}>
@@ -412,7 +443,7 @@ export default function BlogForm() {
             {/* Image */}
             <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
               <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                <FiImage /> Featured Image
+                <FiImage /> Featured Image <span className="text-red-500">*</span>
               </label>
               <div className="space-y-4">
                 {imagePreview ? (
@@ -450,7 +481,7 @@ export default function BlogForm() {
             {/* Category */}
             <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
               <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                <FiTag /> Category
+                <FiTag /> Category <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <div className="relative">
@@ -495,7 +526,7 @@ export default function BlogForm() {
             {/* Tags */}
             <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
               <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                <FiTag /> Tags
+                <FiTag /> Tags <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -511,7 +542,7 @@ export default function BlogForm() {
             {/* Author */}
             <div className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] p-6 rounded-2xl border border-yellow-400/10 hover:border-yellow-400/30 transition-all">
               <label className="flex items-center gap-2 text-sm font-semibold text-yellow-400 mb-3">
-                <FiEdit3 /> Author
+                <FiEdit3 /> Author <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"

@@ -72,7 +72,7 @@ export default function Blog() {
               onClick={() => setSelectedPost(post)}
             >
               <img
-                src={`${API_URL}${post.image}`}
+                src={post.image}
                 alt={post.title}
                 className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -111,7 +111,7 @@ export default function Blog() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={`${API_URL}${selectedPost.image}`}
+              src={selectedPost.image}
               alt={selectedPost.title}
               className="w-full h-48 sm:h-64 lg:h-96 object-cover"
             />

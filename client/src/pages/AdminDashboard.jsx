@@ -179,7 +179,7 @@ export default function AdminDashboard() {
                     >
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          <img src={`${API_URL}${blog.image}`} alt={blog.title} className="w-16 h-16 rounded-lg object-cover" />
+                          <img src={blog.image} alt={blog.title} className="w-16 h-16 rounded-lg object-cover" />
                           <div>
                             <p className="font-semibold line-clamp-1">{blog.title}</p>
                             <p className="text-sm text-gray-400 line-clamp-1">{blog.excerpt}</p>
@@ -237,7 +237,7 @@ export default function AdminDashboard() {
                   className="p-4 hover:bg-white/5 transition-colors"
                 >
                   <div className="flex gap-3 mb-3">
-                    <img src={`${API_URL}${blog.image}`} alt={blog.title} className="w-20 h-20 rounded-lg object-cover" />
+                    <img src={blog.image} alt={blog.title} className="w-20 h-20 rounded-lg object-cover" />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold line-clamp-2 mb-1">{blog.title}</h3>
                       <div className="flex items-center gap-2 text-xs">
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
             className="bg-gradient-to-br from-[#1e1e1e] to-[#2a2a2a] max-w-3xl w-full rounded-2xl shadow-2xl overflow-hidden border border-yellow-400/30 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={`${API_URL}${selectedBlog.image}`} alt={selectedBlog.title} className="w-full h-64 sm:h-80 object-cover" />
+            <img src={selectedBlog.image} alt={selectedBlog.title} className="w-full h-64 sm:h-80 object-cover" />
             <div className="p-6 sm:p-8">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="bg-yellow-400/20 text-yellow-400 text-sm font-semibold px-3 py-1 rounded-full">

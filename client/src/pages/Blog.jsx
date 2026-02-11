@@ -88,7 +88,7 @@ export default function Blog() {
                 <h3 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 sm:mb-3 group-hover:text-yellow-400 transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: post.excerpt }}></p>
               </div>
             </motion.div>
           )))}
